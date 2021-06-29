@@ -7742,3 +7742,11 @@ label.custom-control-label {
     margin-top: 30%;
   }
 }
+
+
+.error {
+    color: red;
+    position: relative !important;
+    margin-top: 1% !important;
+    text-align: center;
+}

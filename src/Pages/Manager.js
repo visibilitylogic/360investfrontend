@@ -136,7 +136,9 @@ class Manager extends Component {
   deleteAutoCopyTrade = (id, _userId) => {
     this.setState({ deleteLoading: true });
     axios
-      .delete(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/autocopytrade/${id}`)
+      .delete(
+        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/autocopytrade/${id}`
+      )
       .then(
         (response) => {
           this.callBackAutoTrade(_userId);
@@ -442,20 +444,23 @@ class Manager extends Component {
     // localStorage.setItem("user", JSON.stringify(a));
     // };
 
-    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/liveTrade`, {
-      method: "PUT",
-      mode: "cors",
+    fetch(
+      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/liveTrade`,
+      {
+        method: "PUT",
+        mode: "cors",
 
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
 
-      body: JSON.stringify({
-        id: this.state.user.user.user._id,
-        liveTrade: this.state.liveTrade,
-      }),
-    })
+        body: JSON.stringify({
+          id: this.state.user.user.user._id,
+          liveTrade: this.state.liveTrade,
+        }),
+      }
+    )
       .then(function (res) {
         if (res.ok) {
           message.success("Live trade updated");
@@ -554,18 +559,21 @@ class Manager extends Component {
   };
 
   declineWithrawal = (id) => {
-    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/withdraw/decline`, {
-      mode: "cors",
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: id,
-        message: "Your request to withdraw was declined",
-      }),
-    }).then(function (res) {
+    fetch(
+      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/withdraw/decline`,
+      {
+        mode: "cors",
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+          message: "Your request to withdraw was declined",
+        }),
+      }
+    ).then(function (res) {
       res.ok
         ? message.success("withdrawal was successfully declined")
         : message.error("withdrawal approval was not declined");
@@ -573,18 +581,21 @@ class Manager extends Component {
   };
 
   approveWithrawal = (id) => {
-    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/withdraw/approve`, {
-      mode: "cors",
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: id,
-        message: "withdrawal was successfully approved",
-      }),
-    }).then(function (res) {
+    fetch(
+      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/withdraw/approve`,
+      {
+        mode: "cors",
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+          message: "withdrawal was successfully approved",
+        }),
+      }
+    ).then(function (res) {
       if (res.ok) {
         message.success("withdrawal was successfully approved");
       } else message.error("withdrawal approval was not successfull");
@@ -604,18 +615,21 @@ class Manager extends Component {
   };
 
   declineDeposit = (id) => {
-    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/deposit/decline`, {
-      mode: "cors",
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: id,
-        message: "deposit request successfully declined",
-      }),
-    }).then(function (res) {
+    fetch(
+      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/deposit/decline`,
+      {
+        mode: "cors",
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+          message: "deposit request successfully declined",
+        }),
+      }
+    ).then(function (res) {
       res.ok
         ? message.success("deposit was successfully declined")
         : message.error("deposit approval was not declined");
@@ -623,18 +637,21 @@ class Manager extends Component {
   };
 
   approveDeposit = (id) => {
-    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/deposit/approve`, {
-      mode: "cors",
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        id: id,
-        message: "deposit was successfully approved",
-      }),
-    }).then(function (res) {
+    fetch(
+      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/deposit/approve`,
+      {
+        mode: "cors",
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          id: id,
+          message: "deposit was successfully approved",
+        }),
+      }
+    ).then(function (res) {
       if (res.ok) {
         message.success("deposit was successfully approved");
       } else message.error("deposit approval was not successfull");
@@ -653,15 +670,18 @@ class Manager extends Component {
     });
   };
   makeAdmin = (id) => {
-    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/users/makeAdmin`, {
-      mode: "cors",
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id: id }),
-    }).then(function (res) {
+    fetch(
+      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/users/makeAdmin`,
+      {
+        mode: "cors",
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: id }),
+      }
+    ).then(function (res) {
       if (res.ok) {
         message.success("successfully made an Admin");
       } else message.error("error making an Admin");
@@ -669,15 +689,18 @@ class Manager extends Component {
   };
 
   makeManager = (id) => {
-    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/users/makeManager`, {
-      mode: "cors",
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id: id }),
-    }).then(function (res) {
+    fetch(
+      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/users/makeManager`,
+      {
+        mode: "cors",
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: id }),
+      }
+    ).then(function (res) {
       if (res.ok) {
         message.success("successfully made a Manager");
       } else message.error("error making Manager");
@@ -685,15 +708,18 @@ class Manager extends Component {
   };
 
   removeManager = (id) => {
-    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/users/removeManager`, {
-      mode: "cors",
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id: id }),
-    }).then(function (res) {
+    fetch(
+      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/users/removeManager`,
+      {
+        mode: "cors",
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: id }),
+      }
+    ).then(function (res) {
       if (res.ok) {
         message.success("successfully removed as a Manager");
       } else message.error("error removing Manager");
@@ -701,15 +727,18 @@ class Manager extends Component {
   };
 
   removeAdmin = (id) => {
-    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/users/removeAdmin`, {
-      mode: "cors",
-      method: "PUT",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ id: id }),
-    }).then(function (res) {
+    fetch(
+      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/users/removeAdmin`,
+      {
+        mode: "cors",
+        method: "PUT",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id: id }),
+      }
+    ).then(function (res) {
       if (res.ok) {
         message.success("successfully removed as a Admin");
       } else message.error("error removing as an Admin");
@@ -1717,14 +1746,12 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {this.state.yourWallet
-                                              ? this.state.user.user.user.wallet
-                                                  .toString()
-                                                  .replace(
-                                                    /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                                    ","
-                                                  )
-                                              : 0}
+                                            {this.state.userId.wallet
+                                              .toString()
+                                              .replace(
+                                                /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
+                                                ","
+                                              )}
                                             {""} USD
                                           </h2>
                                         </div>
@@ -2015,7 +2042,7 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {this.state.user.user.user.wallet
+                                            {this.state.userId.wallet
                                               .toString()
                                               .replace(
                                                 /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
@@ -2589,7 +2616,13 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {this.state.yourWallet} USD
+                                            {this.state.userId.wallet
+                                              .toString()
+                                              .replace(
+                                                /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
+                                                ","
+                                              )}{" "}
+                                            USD
                                           </h2>
                                         </div>
                                       </div>
@@ -2778,7 +2811,13 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {this.state.yourWallet} USD
+                                            {this.state.userId.wallet
+                                              .toString()
+                                              .replace(
+                                                /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
+                                                ","
+                                              )}{" "}
+                                            USD
                                           </h2>
                                         </div>
                                       </div>
@@ -2881,7 +2920,13 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {this.state.yourWallet} USD
+                                            {this.state.userId.wallet
+                                              .toString()
+                                              .replace(
+                                                /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
+                                                ","
+                                              )}{" "}
+                                            USD
                                           </h2>
                                         </div>
                                       </div>
@@ -2984,7 +3029,13 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {this.state.yourWallet} USD
+                                            {this.state.userId.wallet
+                                              .toString()
+                                              .replace(
+                                                /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
+                                                ","
+                                              )}{" "}
+                                            USD
                                           </h2>
                                         </div>
                                       </div>
