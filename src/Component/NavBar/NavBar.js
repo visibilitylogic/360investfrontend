@@ -609,12 +609,8 @@ function NavBar(props) {
 
       setWallet(
         props.user.user.user.wallet === undefined
-          ? props.user.user.user.user.wallet
-              .toString()
-              .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-          : props.user.user.user.wallet
-              .toString()
-              .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+          ? new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
+          : new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
       );
       setUser(
         props.user.user.user._id === undefined
@@ -728,7 +724,7 @@ function NavBar(props) {
 
   const addComma = (value) => {
     if (value !== null && value !== undefined) {
-      return value.toString().replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",");
+      return new Intl.NumberFormat('en-US').format(value);
     }
     return;
   };
@@ -1248,12 +1244,9 @@ function NavBar(props) {
               <div className="account-wrapper">
                 <h6 className="mb-0">
                   $
-                  {props.user.user.user.wallet
-                    .toString()
-                    .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-                    ? props.user.user.user.wallet
-                        .toString()
-                        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
+                  {new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
+                    
+                    ? new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
                     : 0.0}
                 </h6>
                 {/* <p className="mb-0">
@@ -1304,15 +1297,9 @@ function NavBar(props) {
                   <h6>REAL ACCOUNT</h6>
                   <p className="amount mb-0">
                     $
-                    {props.user.user.user.wallet
-                      .toString()
-                      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-                      ? props.user.user.user.wallet
-                          .toString()
-                          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-                      : props.user.user.user.wallet
-                          .toString()
-                          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+                    {new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
+                      ? new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
+                      : new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)}
                   </p>
                 </div>
                 <div>
@@ -1331,28 +1318,16 @@ function NavBar(props) {
                     Total ACCOUNT{" "}
                     <span>
                       = $
-                      {props.user.user.user.wallet
-                        .toString()
-                        .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-                        ? props.user.user.user.wallet
-                            .toString()
-                            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-                        : props.user.user.user.wallet
-                            .toString()
-                            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+                      {new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
+                        ? new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
+                        : new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)}
                     </span>
                   </h6>
                   <p className="amount mb-0">
                     $
-                    {props.user.user.user.wallet
-                      .toString()
-                      .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-                      ? props.user.user.user.wallet
-                          .toString()
-                          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")
-                      : props.user.user.user.wallet
-                          .toString()
-                          .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ",")}
+                    {new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
+                      ? new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
+                      : new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)}
                   </p>
                 </div>
                 <div>
@@ -1514,10 +1489,7 @@ function NavBar(props) {
                                       }
                                     >
                                       $
-                                      {web.BTCAmount2.toString().replace(
-                                        /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                        ","
-                                      )}
+                                      {new Intl.NumberFormat('en-US').format(web.BTCAmount2)}
                                     </button>
                                   </div>
                                   <div>
@@ -1529,10 +1501,7 @@ function NavBar(props) {
                                       }
                                     >
                                       $
-                                      {web.BTCAmount3.toString().replace(
-                                        /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                        ","
-                                      )}
+                                      {new Intl.NumberFormat('en-US').format(web.BTCAmount3)}
                                     </button>
                                   </div>
                                 </div>
@@ -1973,10 +1942,7 @@ function NavBar(props) {
                                         }
                                       >
                                         $
-                                        {web.BTCAmount2.toString().replace(
-                                          /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                          ","
-                                        )}
+                                        {new Intl.NumberFormat('en-US').format(web.BTCAmount2)}
                                       </button>
                                     </div>
                                     <div>
@@ -1988,10 +1954,7 @@ function NavBar(props) {
                                         }
                                       >
                                         $
-                                        {web.BTCAmount3.toString().replace(
-                                          /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                          ","
-                                        )}
+                                        {new Intl.NumberFormat('en-US').format(web.BTCAmount3)}
                                       </button>
                                     </div>
                                   </div>
@@ -2064,12 +2027,7 @@ function NavBar(props) {
                                 To complete your payment, please send{" "}
                                 <strong>
                                   $
-                                  {btcAmount
-                                    .toString()
-                                    .replace(
-                                      /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                      ","
-                                    )}
+                                  {new Intl.NumberFormat('en-US').format(btcAmount)}
                                 </strong>{" "}
                                 dollar worth of BTC to the address below.
                               </p>
@@ -2148,12 +2106,7 @@ function NavBar(props) {
                               </div>
                               <p className="mt-4">
                                 Please confirm that you have transferred $
-                                {btcAmount
-                                  .toString()
-                                  .replace(
-                                    /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                    ","
-                                  )}{" "}
+                                {new Intl.NumberFormat('en-US').format(btcAmount)}{" "}
                                 worth of BTC to the following BITCOIN wallet
                                 address
                               </p>

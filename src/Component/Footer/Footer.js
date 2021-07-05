@@ -21,6 +21,7 @@ export default function Footer() {
       }
     );
   });
+  
   return (
     <>
       <div className="my-5 pb-2"><hr/></div>

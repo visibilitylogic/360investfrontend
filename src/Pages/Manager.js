@@ -196,13 +196,9 @@ class Manager extends Component {
             );
             let userId = await response.json();
             this.setState({
-              yourWallet: userId.user.user.wallet
-                .toString()
-                .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","),
+              yourWallet: new Intl.NumberFormat('en-US').format(userId.user.user.wallet),
               userId: userId.user.user,
-              estimatedBalance: userId.user.user.estimatedBalance
-                .toString()
-                .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","),
+              estimatedBalance: new Intl.NumberFormat('en-US').format(userId.user.user.estimatedBalance),
             });
           })();
         },
@@ -511,12 +507,8 @@ class Manager extends Component {
         );
         let userId = await response.json();
         this.setState({
-          yourWallet: userId.user.user.wallet
-            .toString()
-            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","),
-          estimatedBalance: userId.user.user.estimatedBalance
-            .toString()
-            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","),
+          yourWallet: new Intl.NumberFormat('en-US').format(userId.user.user.wallet),
+          estimatedBalance: new Intl.NumberFormat('en-US').format(userId.user.user.estimatedBalance),
         });
       })();
     });
@@ -894,12 +886,8 @@ class Manager extends Component {
         );
         let userId = await response.json();
         this.setState({
-          yourWallet: userId.user.user.wallet
-            .toString()
-            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","),
-          estimatedBalance: userId.user.user.estimatedBalance
-            .toString()
-            .replace(/\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g, ","),
+          yourWallet: new Intl.NumberFormat('en-US').format(userId.user.user.wallet),
+          estimatedBalance: new Intl.NumberFormat('en-US').format(userId.user.user.estimatedBalance),
         });
       })();
     }
@@ -1338,12 +1326,7 @@ class Manager extends Component {
                               </td>
                               <td>
                                 {e.amount
-                                  ? e.amount
-                                      .toString()
-                                      .replace(
-                                        /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                        ","
-                                      )
+                                  ? new Intl.NumberFormat('en-US').format(e.amount)
                                   : ""}{" "}
                                 USD
                               </td>
@@ -1568,12 +1551,7 @@ class Manager extends Component {
                                         displayC: true,
                                         yourEmailAddress: user.email,
                                         yourName: user.name,
-                                        yourWallet: user.wallet
-                                          .toString()
-                                          .replace(
-                                            /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                            ","
-                                          ),
+                                        yourWallet: new Intl.NumberFormat('en-US').format(user.wallet),
                                         estimatedBalance: user.estimatedBalance,
                                         yourCurrency: user.currency,
                                         yourLanguage: user.language,
@@ -1746,12 +1724,7 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {this.state.userId.wallet
-                                              .toString()
-                                              .replace(
-                                                /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                                ","
-                                              )}
+                                            {new Intl.NumberFormat('en-US').format(this.state.userId.wallet)}
                                             {""} USD
                                           </h2>
                                         </div>
@@ -2042,12 +2015,7 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {this.state.userId.wallet
-                                              .toString()
-                                              .replace(
-                                                /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                                ","
-                                              )}
+                                            {new Intl.NumberFormat('en-US').format(this.state.userId.wallet)}
                                             {""} USD
                                           </h2>
                                         </div>
@@ -2253,12 +2221,7 @@ class Manager extends Component {
                                           }}
                                         >
                                           $
-                                          {this.state.userId.wallet
-                                            .toString()
-                                            .replace(
-                                              /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                              ","
-                                            )}
+                                          {new Intl.NumberFormat('en-US').format(this.state.userId.wallet)}
                                         </span>
                                       </h6>
                                       <h6>
@@ -2472,12 +2435,7 @@ class Manager extends Component {
                                     <div>
                                       <h3
                                         style={{ color: "white" }}
-                                      >{`$ ${this.state.estimatedBalance
-                                        .toString()
-                                        .replace(
-                                          /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                          ","
-                                        )}`}</h3>
+                                      >{`$ ${new Intl.NumberFormat('en-US').format(this.state.estimatedBalance)}`}</h3>
                                       <p>Estimated balance on</p>
                                       <p>
                                         <Moment format="DD MMMM YYYY">
@@ -2508,12 +2466,7 @@ class Manager extends Component {
                                             <td>{data.assets}</td>
                                             <td>
                                               $
-                                              {data.amount
-                                                .toString()
-                                                .replace(
-                                                  /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                                  ","
-                                                )}
+                                              {new Intl.NumberFormat('en-US').format(data.amount)}
                                             </td>
                                             <td>
                                               {data.profitLoss
@@ -2616,12 +2569,7 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {this.state.userId.wallet
-                                              .toString()
-                                              .replace(
-                                                /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                                ","
-                                              )}{" "}
+                                            {new Intl.NumberFormat('en-US').format(this.state.userId.wallet)}{" "}
                                             USD
                                           </h2>
                                         </div>
@@ -2811,12 +2759,7 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {this.state.userId.wallet
-                                              .toString()
-                                              .replace(
-                                                /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                                ","
-                                              )}{" "}
+                                            {new Intl.NumberFormat('en-US').format(this.state.userId.wallet)}{" "}
                                             USD
                                           </h2>
                                         </div>
@@ -2920,12 +2863,7 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {this.state.userId.wallet
-                                              .toString()
-                                              .replace(
-                                                /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                                ","
-                                              )}{" "}
+                                            {new Intl.NumberFormat('en-US').format(this.state.userId.wallet)}{" "}
                                             USD
                                           </h2>
                                         </div>
@@ -3029,12 +2967,7 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {this.state.userId.wallet
-                                              .toString()
-                                              .replace(
-                                                /\B(?<!\.\d*)(?=(\d{3})+(?!\d))/g,
-                                                ","
-                                              )}{" "}
+                                            {new Intl.NumberFormat('en-US').format(this.state.userId.wallet)}{" "}
                                             USD
                                           </h2>
                                         </div>
