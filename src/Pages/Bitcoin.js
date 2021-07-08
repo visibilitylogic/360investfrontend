@@ -81,16 +81,17 @@ const Bitcoin = (props) => {
 
   const onSaved = async () => {
     setSubmitLoading(true);
-    const imgUpload = await axios.put(
-      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/site/depositImages`,
-      depositImages
-    );
+    console.log('hhhh')
     const res = await axios.put(
       `${endpoint}/api/site/btcAdminSettings`,
       dataAll
     );
+    // const imgUpload = await axios.put(
+    //   `${endpoint}/api/site/depositImages`,
+    //   depositImages
+    // );
 
-    if (res.data && imgUpload) {
+    if (res.data) {
       message.success("Settings successfully updated");
       setSubmitLoading(false);
     }
@@ -451,7 +452,7 @@ const Bitcoin = (props) => {
                       <button disabled={submitLoading} onClick={onSaved}>
                         {submitLoading ? (
                           <>
-                            Save... <i className="fa fa-spin fa-spinner"></i>
+                            Saving... <i className="fa fa-spin fa-spinner"></i>
                           </>
                         ) : (
                           "Save"
