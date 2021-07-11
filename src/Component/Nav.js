@@ -1734,21 +1734,21 @@ function NavbarC(props) {
                                 className="mt-5 d-flex align-items-center justify-content-between w-75"
                                 style={{ margin: "0 auto" }}
                               >
-                                <a href={siteUData.depositeImg1Link}>
+                                <a href={siteUData.depositeImg1Link} target='_blank'>
                                   <img
                                     src={siteUData.depositeImg1}
                                     alt="account img"
                                     style={{ width: "65px" }}
                                   />
                                 </a>
-                                <a href={siteUData.depositeImg2Link}>
+                                <a href={siteUData.depositeImg2Link} target='_blank'>
                                   <img
                                     src={siteUData.depositeImg2}
                                     alt="account img"
                                     style={{ width: "65px" }}
                                   />
                                 </a>
-                                <a href={siteUData.depositeImg3Link}>
+                                <a href={siteUData.depositeImg3Link} target='_blank'>
                                   <img
                                     src={siteUData.depositeImg3}
                                     alt="account img"
