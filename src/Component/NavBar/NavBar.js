@@ -103,7 +103,7 @@ function NavBar(props) {
   const [cardYear, setCardYear] = useState("");
   const [cardDepositAmount, setCardDepositAmount] = useState("");
 
-  const [profileCountry, setProfileCountry] = useState("Nigeria");
+  const [profileCountry, setProfileCountry] = useState("");
   const [yourLastName, setYourLastName] = useState("");
 
   const [cardCurrency, setCardCurrency] = useState("");
@@ -609,8 +609,8 @@ function NavBar(props) {
 
       setWallet(
         props.user.user.user.wallet === undefined
-          ? new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
-          : new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
+          ? new Intl.NumberFormat("en-US").format(props.user.user.user.wallet)
+          : new Intl.NumberFormat("en-US").format(props.user.user.user.wallet)
       );
       setUser(
         props.user.user.user._id === undefined
@@ -633,6 +633,17 @@ function NavBar(props) {
         props.user.user.user.phoneNumber === undefined
           ? props.user.user.user.user.phoneNumber
           : props.user.user.user.phoneNumber
+      );
+
+      setYourCountry(
+        props.user.user.user.country === undefined
+          ? props.user.user.user.user.country
+          : props.user.user.user.country
+      );
+      setProfileCountry(
+        props.user.user.user.country === undefined
+          ? props.user.user.user.user.country
+          : props.user.user.user.country
       );
 
       // setYourPassword(
@@ -684,21 +695,24 @@ function NavBar(props) {
     if (yourPassword !== yourPasswordComfirm) {
       message.error("Password must match");
     } else
-      fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/update/user`, {
-        mode: "cors",
-        method: "PUT",
-        headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          id: userID,
-          name: yourName,
-          email: yourEmailAddress,
-          password: yourPassword,
-          phoneNumber: yourPhoneNumber,
-        }),
-      })
+      fetch(
+        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/update/user`,
+        {
+          mode: "cors",
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: userID,
+            name: yourName,
+            email: yourEmailAddress,
+            password: yourPassword,
+            phoneNumber: yourPhoneNumber,
+          }),
+        }
+      )
         .then(function (res) {
           if (res.ok) {
             message.success("Profile was successfully updated");
@@ -724,10 +738,12 @@ function NavBar(props) {
 
   const addComma = (value) => {
     if (value !== null && value !== undefined) {
-      return new Intl.NumberFormat('en-US').format(value);
+      return new Intl.NumberFormat("en-US").format(value);
     }
     return;
   };
+
+  console.log(props.user.user.user, "jjj");
 
   return (
     <>
@@ -1129,13 +1145,15 @@ function NavBar(props) {
             title={
               <div className="camera-wrapper">
                 {/* <CameraFill /> */}
-                {props.user.user.user.verify ||
-                props.user.user.user.isPendingVerification ||
-                Img.length > 0 ? (
-                  <img src={Img} className="camera-wrapper" />
-                ) : (
+                {props.user.user.user.isPendingVerification ? <X /> : null}
+                {props.user.user.user.verify == false &&
+                props.user.user.user.isPendingVerification === false ? (
                   <X />
-                )}
+                ) : null}
+                {props.user.user.user.verify == true &&
+                props.user.user.user.isPendingVerification === false ? (
+                  <img src={Img} className="camera-wrapper" />
+                ) : null}
               </div>
             }
             id="collasible-nav-dropdown"
@@ -1175,20 +1193,30 @@ function NavBar(props) {
                   <p>93220945</p>
                 </div>
               </div>
-              {props.user.user.user.verify ||
-              props.user.user.user.isPendingVerification ? (
+
+              {props.user.user.user.isPendingVerification ? (
+                <div className="verify ver redNavbar " onClick={props.openVer}>
+                  <a id="verify-me " href="#">
+                    Pending
+                  </a>
+                </div>
+              ) : null}
+              {props.user.user.user.verify == false &&
+              props.user.user.user.isPendingVerification === false ? (
+                <div className="verify ver  redNavbar" onClick={props.openVer}>
+                  <a id="verify-me " href="#">
+                    Not Verified
+                  </a>
+                </div>
+              ) : null}
+              {props.user.user.user.verify == true &&
+              props.user.user.user.isPendingVerification === false ? (
                 <div className="verify ver " onClick={props.openVer}>
                   <a id="verify-me " href="#">
                     Verified
                   </a>
                 </div>
-              ) : (
-                <div className="verify ver redNavbar" onClick={props.openVer}>
-                  <a id="verify-me " href="#">
-                    Not Verified
-                  </a>
-                </div>
-              )}
+              ) : null}
             </div>
 
             <div className="features-wrapper">
@@ -1244,9 +1272,12 @@ function NavBar(props) {
               <div className="account-wrapper">
                 <h6 className="mb-0">
                   $
-                  {new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
-                    
-                    ? new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
+                  {new Intl.NumberFormat("en-US").format(
+                    props.user.user.user.wallet
+                  )
+                    ? new Intl.NumberFormat("en-US").format(
+                        props.user.user.user.wallet
+                      )
                     : 0.0}
                 </h6>
                 {/* <p className="mb-0">
@@ -1297,9 +1328,15 @@ function NavBar(props) {
                   <h6>REAL ACCOUNT</h6>
                   <p className="amount mb-0">
                     $
-                    {new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
-                      ? new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
-                      : new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)}
+                    {new Intl.NumberFormat("en-US").format(
+                      props.user.user.user.wallet
+                    )
+                      ? new Intl.NumberFormat("en-US").format(
+                          props.user.user.user.wallet
+                        )
+                      : new Intl.NumberFormat("en-US").format(
+                          props.user.user.user.wallet
+                        )}
                   </p>
                 </div>
                 <div>
@@ -1318,16 +1355,28 @@ function NavBar(props) {
                     Total ACCOUNT{" "}
                     <span>
                       = $
-                      {new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
-                        ? new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
-                        : new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)}
+                      {new Intl.NumberFormat("en-US").format(
+                        props.user.user.user.wallet
+                      )
+                        ? new Intl.NumberFormat("en-US").format(
+                            props.user.user.user.wallet
+                          )
+                        : new Intl.NumberFormat("en-US").format(
+                            props.user.user.user.wallet
+                          )}
                     </span>
                   </h6>
                   <p className="amount mb-0">
                     $
-                    {new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
-                      ? new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)
-                      : new Intl.NumberFormat('en-US').format(props.user.user.user.wallet)}
+                    {new Intl.NumberFormat("en-US").format(
+                      props.user.user.user.wallet
+                    )
+                      ? new Intl.NumberFormat("en-US").format(
+                          props.user.user.user.wallet
+                        )
+                      : new Intl.NumberFormat("en-US").format(
+                          props.user.user.user.wallet
+                        )}
                   </p>
                 </div>
                 <div>
@@ -1489,7 +1538,9 @@ function NavBar(props) {
                                       }
                                     >
                                       $
-                                      {new Intl.NumberFormat('en-US').format(web.BTCAmount2)}
+                                      {new Intl.NumberFormat("en-US").format(
+                                        web.BTCAmount2
+                                      )}
                                     </button>
                                   </div>
                                   <div>
@@ -1501,7 +1552,9 @@ function NavBar(props) {
                                       }
                                     >
                                       $
-                                      {new Intl.NumberFormat('en-US').format(web.BTCAmount3)}
+                                      {new Intl.NumberFormat("en-US").format(
+                                        web.BTCAmount3
+                                      )}
                                     </button>
                                   </div>
                                 </div>
@@ -1942,7 +1995,9 @@ function NavBar(props) {
                                         }
                                       >
                                         $
-                                        {new Intl.NumberFormat('en-US').format(web.BTCAmount2)}
+                                        {new Intl.NumberFormat("en-US").format(
+                                          web.BTCAmount2
+                                        )}
                                       </button>
                                     </div>
                                     <div>
@@ -1954,7 +2009,9 @@ function NavBar(props) {
                                         }
                                       >
                                         $
-                                        {new Intl.NumberFormat('en-US').format(web.BTCAmount3)}
+                                        {new Intl.NumberFormat("en-US").format(
+                                          web.BTCAmount3
+                                        )}
                                       </button>
                                     </div>
                                   </div>
@@ -1980,21 +2037,30 @@ function NavBar(props) {
                                 className="mt-5 d-flex align-items-center justify-content-between w-75"
                                 style={{ margin: "0 auto" }}
                               >
-                                <a href={siteUData.depositeImg1Link} target='_blank'>
+                                <a
+                                  href={siteUData.depositeImg1Link}
+                                  target="_blank"
+                                >
                                   <img
                                     src={siteUData.depositeImg1}
                                     alt="account img"
                                     style={{ width: "65px" }}
                                   />
                                 </a>
-                                <a href={siteUData.depositeImg2Link} target='_blank'>
+                                <a
+                                  href={siteUData.depositeImg2Link}
+                                  target="_blank"
+                                >
                                   <img
                                     src={siteUData.depositeImg2}
                                     alt="account img"
                                     style={{ width: "65px" }}
                                   />
                                 </a>
-                                <a href={siteUData.depositeImg3Link} target='_blank'>
+                                <a
+                                  href={siteUData.depositeImg3Link}
+                                  target="_blank"
+                                >
                                   <img
                                     src={siteUData.depositeImg3}
                                     alt="account img"
@@ -2027,7 +2093,9 @@ function NavBar(props) {
                                 To complete your payment, please send{" "}
                                 <strong>
                                   $
-                                  {new Intl.NumberFormat('en-US').format(btcAmount)}
+                                  {new Intl.NumberFormat("en-US").format(
+                                    btcAmount
+                                  )}
                                 </strong>{" "}
                                 dollar worth of BTC to the address below.
                               </p>
@@ -2106,7 +2174,9 @@ function NavBar(props) {
                               </div>
                               <p className="mt-4">
                                 Please confirm that you have transferred $
-                                {new Intl.NumberFormat('en-US').format(btcAmount)}{" "}
+                                {new Intl.NumberFormat("en-US").format(
+                                  btcAmount
+                                )}{" "}
                                 worth of BTC to the following BITCOIN wallet
                                 address
                               </p>
@@ -2461,6 +2531,7 @@ function NavBar(props) {
                       </Form.Group>
                     </Col>
                   </Row>
+                  <p style={{ color: "white" }}>Country</p>
                   <Row>
                     <Col xs={12} md={12}>
                       <Form.Group controlId="exampleForm.ControlSelect1">

@@ -65,7 +65,7 @@ class Manager extends Component {
       yourName: "",
       yourEmailAddress: "",
       yourLanguage: "",
-      userCountry: "Nigeria",
+      userCountry: "",
       yourCurrency: "",
       userLevel: "",
       yourWallet: 0,
@@ -86,6 +86,9 @@ class Manager extends Component {
       assets: "",
       scheduledTime: "",
       profitLoss: false,
+      yourPassword: "",
+      yourPasswordComfirm: "",
+      yourPhone: "",
     };
 
     this.myRef3 = this.props.user.user ? React.createRef() : "";
@@ -196,9 +199,13 @@ class Manager extends Component {
             );
             let userId = await response.json();
             this.setState({
-              yourWallet: new Intl.NumberFormat('en-US').format(userId.user.user.wallet),
+              yourWallet: new Intl.NumberFormat("en-US").format(
+                userId.user.user.wallet
+              ),
               userId: userId.user.user,
-              estimatedBalance: new Intl.NumberFormat('en-US').format(userId.user.user.estimatedBalance),
+              estimatedBalance: new Intl.NumberFormat("en-US").format(
+                userId.user.user.estimatedBalance
+              ),
             });
           })();
         },
@@ -467,7 +474,41 @@ class Manager extends Component {
       });
   };
 
+  runPass = (id) => {
+    console.log(this.state.yourPassword, "ghhhh");
+    if (this.state.yourPassword !== this.state.yourPasswordComfirm) {
+      message.error("Password must match");
+    } else {
+      fetch(
+        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/update/user`,
+        {
+          mode: "cors",
+          method: "PUT",
+          headers: {
+            Accept: "application/json",
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            id: id,
+            password: this.state.yourPassword,
+            name: this.state.yourName,
+            email: this.state.yourEmailAddress,
+            phoneNumber: this.state.yourPhone,
+          }),
+        }
+      ).then(function (res) {
+        console.log(res);
+        if (res.ok) {
+          console.log("good", res);
+          // message.success("Profile was successfully updated");
+        } else message.error("peoblems updating profile");
+      });
+    }
+  };
+
   editUserProfile = (id) => {
+    this.runPass(id);
+
     fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/update`, {
       mode: "cors",
       method: "PUT",
@@ -487,30 +528,8 @@ class Manager extends Component {
       }),
     }).then(function (res) {
       if (res.ok) {
-        message.success("profile has been updated successfully");
-      } else message.error("profile update failed");
-
-      (async () => {
-        let response = await fetch(
-          `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${this.state.user.user.user._id}`
-        );
-        let user = await response.json();
-        this.setState({
-          user: user,
-        });
-        let a = { user: user };
-        localStorage.setItem("user", JSON.stringify(a));
-      })();
-      (async () => {
-        let response = await fetch(
-          `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${this.state.userId._id}`
-        );
-        let userId = await response.json();
-        this.setState({
-          yourWallet: new Intl.NumberFormat('en-US').format(userId.user.user.wallet),
-          estimatedBalance: new Intl.NumberFormat('en-US').format(userId.user.user.estimatedBalance),
-        });
-      })();
+        message.success("Profile was successfully updated");
+      } else message.error("peoblems updating profile");
     });
   };
 
@@ -886,8 +905,12 @@ class Manager extends Component {
         );
         let userId = await response.json();
         this.setState({
-          yourWallet: new Intl.NumberFormat('en-US').format(userId.user.user.wallet),
-          estimatedBalance: new Intl.NumberFormat('en-US').format(userId.user.user.estimatedBalance),
+          yourWallet: new Intl.NumberFormat("en-US").format(
+            userId.user.user.wallet
+          ),
+          estimatedBalance: new Intl.NumberFormat("en-US").format(
+            userId.user.user.estimatedBalance
+          ),
         });
       })();
     }
@@ -1326,7 +1349,9 @@ class Manager extends Component {
                               </td>
                               <td>
                                 {e.amount
-                                  ? new Intl.NumberFormat('en-US').format(e.amount)
+                                  ? new Intl.NumberFormat("en-US").format(
+                                      e.amount
+                                    )
                                   : ""}{" "}
                                 USD
                               </td>
@@ -1550,8 +1575,12 @@ class Manager extends Component {
                                         userId: user,
                                         displayC: true,
                                         yourEmailAddress: user.email,
+                                        userCountry: user.country,
+                                        yourPhone: user.phoneNumber,
                                         yourName: user.name,
-                                        yourWallet: new Intl.NumberFormat('en-US').format(user.wallet),
+                                        yourWallet: new Intl.NumberFormat(
+                                          "en-US"
+                                        ).format(user.wallet),
                                         estimatedBalance: user.estimatedBalance,
                                         yourCurrency: user.currency,
                                         yourLanguage: user.language,
@@ -1724,7 +1753,9 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {new Intl.NumberFormat('en-US').format(this.state.userId.wallet)}
+                                            {new Intl.NumberFormat(
+                                              "en-US"
+                                            ).format(this.state.userId.wallet)}
                                             {""} USD
                                           </h2>
                                         </div>
@@ -2015,7 +2046,9 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {new Intl.NumberFormat('en-US').format(this.state.userId.wallet)}
+                                            {new Intl.NumberFormat(
+                                              "en-US"
+                                            ).format(this.state.userId.wallet)}
                                             {""} USD
                                           </h2>
                                         </div>
@@ -2221,7 +2254,9 @@ class Manager extends Component {
                                           }}
                                         >
                                           $
-                                          {new Intl.NumberFormat('en-US').format(this.state.userId.wallet)}
+                                          {new Intl.NumberFormat(
+                                            "en-US"
+                                          ).format(this.state.userId.wallet)}
                                         </span>
                                       </h6>
                                       <h6>
@@ -2435,7 +2470,11 @@ class Manager extends Component {
                                     <div>
                                       <h3
                                         style={{ color: "white" }}
-                                      >{`$ ${new Intl.NumberFormat('en-US').format(this.state.estimatedBalance)}`}</h3>
+                                      >{`$ ${new Intl.NumberFormat(
+                                        "en-US"
+                                      ).format(
+                                        this.state.estimatedBalance
+                                      )}`}</h3>
                                       <p>Estimated balance on</p>
                                       <p>
                                         <Moment format="DD MMMM YYYY">
@@ -2466,7 +2505,9 @@ class Manager extends Component {
                                             <td>{data.assets}</td>
                                             <td>
                                               $
-                                              {new Intl.NumberFormat('en-US').format(data.amount)}
+                                              {new Intl.NumberFormat(
+                                                "en-US"
+                                              ).format(data.amount)}
                                             </td>
                                             <td>
                                               {data.profitLoss
@@ -2569,7 +2610,11 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {new Intl.NumberFormat('en-US').format(this.state.userId.wallet)}{" "}
+                                            {new Intl.NumberFormat(
+                                              "en-US"
+                                            ).format(
+                                              this.state.userId.wallet
+                                            )}{" "}
                                             USD
                                           </h2>
                                         </div>
@@ -2759,7 +2804,11 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {new Intl.NumberFormat('en-US').format(this.state.userId.wallet)}{" "}
+                                            {new Intl.NumberFormat(
+                                              "en-US"
+                                            ).format(
+                                              this.state.userId.wallet
+                                            )}{" "}
                                             USD
                                           </h2>
                                         </div>
@@ -2863,7 +2912,11 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {new Intl.NumberFormat('en-US').format(this.state.userId.wallet)}{" "}
+                                            {new Intl.NumberFormat(
+                                              "en-US"
+                                            ).format(
+                                              this.state.userId.wallet
+                                            )}{" "}
                                             USD
                                           </h2>
                                         </div>
@@ -2967,7 +3020,11 @@ class Manager extends Component {
                                               color: "#29c359",
                                             }}
                                           >
-                                            {new Intl.NumberFormat('en-US').format(this.state.userId.wallet)}{" "}
+                                            {new Intl.NumberFormat(
+                                              "en-US"
+                                            ).format(
+                                              this.state.userId.wallet
+                                            )}{" "}
                                             USD
                                           </h2>
                                         </div>
@@ -3186,7 +3243,7 @@ class Manager extends Component {
                         <div className="billing-form text-left">
                           <Row>
                             <Col xs={12} md={6}>
-                              <Form.Group controlId="exampleForm.ControlInput1">
+                              <Form.Group>
                                 <Form.Control
                                   type="text"
                                   placeholder="Your Name"
@@ -3200,7 +3257,7 @@ class Manager extends Component {
                               </Form.Group>
                             </Col>
                             <Col xs={12} md={6}>
-                              <Form.Group controlId="exampleForm.ControlInput2">
+                              <Form.Group>
                                 <Form.Control
                                   type="email"
                                   placeholder="Your Email Address"
@@ -3216,7 +3273,7 @@ class Manager extends Component {
                               </Form.Group>
                             </Col>
                           </Row>
-                          <Form.Group controlId="exampleForm.ControlSelect5">
+                          <Form.Group>
                             <Form.Control
                               as="select"
                               value={this.state.userCountry}
@@ -3231,7 +3288,7 @@ class Manager extends Component {
                           </Form.Group>
                           <Row>
                             <Col xs={12} md={6}>
-                              <Form.Group controlId="exampleForm.ControlSelect3">
+                              <Form.Group>
                                 <Form.Control
                                   as="select"
                                   id={"language"}
@@ -3250,7 +3307,7 @@ class Manager extends Component {
                               </Form.Group>
                             </Col>
                             <Col xs={12} md={6}>
-                              <Form.Group controlId="exampleForm.ControlSelect4">
+                              <Form.Group>
                                 <Form.Control
                                   as="select"
                                   defaultValue={this.state.yourCurrency}
@@ -3266,6 +3323,50 @@ class Manager extends Component {
                                   </option>
                                   <option value="USD">US Dollars</option>
                                 </Form.Control>
+                              </Form.Group>
+                            </Col>
+                          </Row>
+
+                          <Row>
+                            <Col xs={12} md={6}>
+                              <Form.Group>
+                                <Form.Control
+                                  value={this.state.yourPassword}
+                                  onChange={(e) => {
+                                    this.setState({
+                                      yourPassword: e.target.value,
+                                    });
+                                    console.log(
+                                      this.state.yourPassword,
+                                      "lllll"
+                                    );
+                                  }}
+                                  type="password"
+                                  placeholder="Your New Password"
+                                  name="newPassword"
+                                  id="yourPassword"
+                                />
+                              </Form.Group>
+                            </Col>
+
+                            <Col xs={12} md={6}>
+                              <Form.Group>
+                                <Form.Control
+                                  value={this.state.yourPasswordComfirm}
+                                  onChange={(e) => {
+                                    this.setState({
+                                      yourPasswordComfirm: e.target.value,
+                                    });
+                                    console.log(
+                                      this.state.yourPasswordComfirm,
+                                      "lllll"
+                                    );
+                                  }}
+                                  type="password"
+                                  placeholder="Repeat New Password"
+                                  name="repeatPassword"
+                                  id="yourPasswordConfirm"
+                                />
                               </Form.Group>
                             </Col>
                           </Row>
