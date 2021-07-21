@@ -529,7 +529,7 @@ class Manager extends Component {
     }).then(function (res) {
       if (res.ok) {
         message.success("Profile was successfully updated");
-      } else message.error("peoblems updating profile");
+      } else message.error("problems updating profile");
     });
   };
 
@@ -610,18 +610,18 @@ class Manager extends Component {
       if (res.ok) {
         message.success("withdrawal was successfully approved");
       } else message.error("withdrawal approval was not successfull");
-      (async () => {
-        let response = await fetch(
-          `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${this.state.user.user.user._id}`
-        );
-        let user = await response.json();
-        this.setState({
-          user: user,
-        });
+      // (async () => {
+      //   let response = await fetch(
+      //     `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${this.state.user.user.user._id}`
+      //   );
+      //   let user = await response.json();
+      //   this.setState({
+      //     user: user,
+      //   });
 
-        let a = { user: user };
-        localStorage.setItem("user", JSON.stringify(a));
-      })();
+      //   let a = { user: user };
+      //   localStorage.setItem("user", JSON.stringify(a));
+      // })();
     });
   };
 
@@ -3317,11 +3317,11 @@ class Manager extends Component {
                                     })
                                   }
                                 >
-                                  <option>Select Currency</option>
-                                  <option value="BSD">
-                                    Bahamian Dollars (BSD)
-                                  </option>
-                                  <option value="USD">US Dollars</option>
+                                  <option value="$">Select Currency</option>
+
+                                  <option value="$">USD</option>
+                                  <option value="€">EUR</option>
+                                  <option value="£">GBP</option>
                                 </Form.Control>
                               </Form.Group>
                             </Col>

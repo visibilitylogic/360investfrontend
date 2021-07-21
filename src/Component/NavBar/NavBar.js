@@ -104,6 +104,7 @@ function NavBar(props) {
   const [cardDepositAmount, setCardDepositAmount] = useState("");
 
   const [profileCountry, setProfileCountry] = useState("");
+
   const [yourLastName, setYourLastName] = useState("");
 
   const [cardCurrency, setCardCurrency] = useState("");
@@ -123,7 +124,7 @@ function NavBar(props) {
   const [yourCity, setYourCity] = useState("");
   const [cryptoAddress, setCryptoAddress] = useState("");
   const [cryptoCurrencyName, setCryptoCurrencyName] = useState("BTC");
-  const [withValue, setWitValue] = useState(1000);
+  const [withValue, setWitValue] = useState(0);
   const [wallet, setWallet] = useState(0);
   const [withdrawMethod, setWithdrawMethod] = useState("");
   const [wMethod, setWMethod] = useState("");
@@ -154,7 +155,10 @@ function NavBar(props) {
   const [creditStepThree, setCreditStepThree] = useState(false);
   const [creditStepFour, setCreditStepFour] = useState(false);
   const [creditStepFive, setCreditStepFive] = useState(false);
+  const [userLevel, setUserLevel] = useState(false);
+
   const options = useMemo(() => countryList().getData(), []);
+
   const copyToClipboard = () => {
     setCopied(true);
   };
@@ -397,6 +401,7 @@ function NavBar(props) {
         if (res.ok) {
           message.success("Your Crypto currency Details saved successful");
           setCryptoCurrency(false);
+          window.location.reload();
         } else message.error("problems saving cryptocurrency details, try again");
       })
       .then((data) => {
@@ -450,6 +455,7 @@ function NavBar(props) {
         if (res.ok) {
           message.success("Your Bank Details saved successful");
           setBankTransfer(false);
+          window.location.reload();
         } else message.error("problems saving bank details, try again");
       })
       .then((data) => {
@@ -466,39 +472,44 @@ function NavBar(props) {
   const amount = withValue - percent;
 
   const subWithdraw = () => {
-    let withdraw = {
-      id: userID,
-      currency: cardCurrency,
-      fees: percent,
-      method: wMethod,
-      amount: amount,
-      currency: yourCountry,
-      methodDetails: methodDetails,
-    };
+    if (withValue > props.user.user.user.wallet) {
+      message.error("Insufficient withdrawal Amount");
+    } else {
+      let withdraw = {
+        id: userID,
+        currency: cardCurrency,
+        fees: percent,
+        method: wMethod,
+        amount: amount,
+        currency: yourCountry,
+        methodDetails: methodDetails,
+      };
 
-    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/withdraw`, {
-      mode: "cors",
-      method: "POST",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify(withdraw),
-    })
-      .then(function (res) {
-        if (res.ok) {
-          message.success("Your withdarwal request was successful");
-          setWithdraw(false);
-        } else message.error("Your withdrawal request was not successful, try again");
+      fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/withdraw`, {
+        mode: "cors",
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(withdraw),
       })
-      .then((data) => {
-        if (data) {
-          console.log("good", data);
-        } else {
-          console.log("bad", data);
-        }
-      });
+        .then(function (res) {
+          if (res.ok) {
+            message.success("Your withdrawal request was successful");
+            setWithdraw(false);
+          } else message.error("Your withdrawal request was not successful, try again");
+        })
+        .then((data) => {
+          if (data) {
+            console.log("good", data);
+          } else {
+            console.log("bad", data);
+          }
+        });
+    }
   };
+
   const BuyCoin = () => {
     let deposit = {
       id: userID,
@@ -692,6 +703,28 @@ function NavBar(props) {
     }
   };
   const updateProfile = () => {
+    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/update`, {
+      mode: "cors",
+      method: "PUT",
+      headers: {
+        Accept: "application/json",
+        "Content-Type": "application/json",
+      },
+
+      body: JSON.stringify({
+        id: userID,
+        email: yourEmailAddress,
+        name: yourName,
+        language: yourLanguage,
+        country: userCountry,
+        currency: yourCurrency,
+        setRole: userLevel,
+      }),
+    }).then(function (res) {
+      if (res.ok) {
+        console.log("good", res);
+      } else message.error("problems updating profile");
+    });
     if (yourPassword !== yourPasswordComfirm) {
       message.error("Password must match");
     } else
@@ -743,7 +776,21 @@ function NavBar(props) {
     return;
   };
 
-  console.log(props.user.user.user, "jjj");
+  // console.log(payMethodBoth, "payMethodBoth");
+
+  // useEffect(() => {
+  //   let getSiteData = async () => {
+  //     let response = await fetch(
+  //       `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/paymentDetails/${userID}`
+  //     );
+  //     let data = await response.json();
+  //     console.log(data, "ShowpayMethod");
+
+  //     setPayMethod(data);
+  //   };
+
+  //   getSiteData();
+  // },payMethod);
 
   return (
     <>
@@ -1271,7 +1318,7 @@ function NavBar(props) {
             title={
               <div className="account-wrapper">
                 <h6 className="mb-0">
-                  $
+                  {props.user.user.user.currency}
                   {new Intl.NumberFormat("en-US").format(
                     props.user.user.user.wallet
                   )
@@ -1327,7 +1374,7 @@ function NavBar(props) {
                 <div>
                   <h6>REAL ACCOUNT</h6>
                   <p className="amount mb-0">
-                    $
+                    {props.user.user.user.currency}
                     {new Intl.NumberFormat("en-US").format(
                       props.user.user.user.wallet
                     )
@@ -1354,7 +1401,7 @@ function NavBar(props) {
                   <h6>
                     Total ACCOUNT{" "}
                     <span>
-                      = $
+                      = {props.user.user.user.currency}
                       {new Intl.NumberFormat("en-US").format(
                         props.user.user.user.wallet
                       )
@@ -1367,7 +1414,7 @@ function NavBar(props) {
                     </span>
                   </h6>
                   <p className="amount mb-0">
-                    $
+                    {props.user.user.user.currency}
                     {new Intl.NumberFormat("en-US").format(
                       props.user.user.user.wallet
                     )
@@ -1490,7 +1537,9 @@ function NavBar(props) {
                                   setCardCurrency(e.target.value);
                                 }}
                               >
-                                <option value="USD">$ USD</option>
+                                <option value="USD">
+                                  {props.user.user.user.currency}
+                                </option>
                               </select>
                             </div>
 
@@ -1526,7 +1575,8 @@ function NavBar(props) {
                                         setBtcAmount(web.BTCAmount1)
                                       }
                                     >
-                                      ${web.BTCAmount1}
+                                      {props.user.user.user.currency}
+                                      {web.BTCAmount1}
                                     </button>
                                   </div>
                                   <div>
@@ -1537,7 +1587,7 @@ function NavBar(props) {
                                         setBtcAmount(web.BTCAmount2)
                                       }
                                     >
-                                      $
+                                      {props.user.user.user.currency}
                                       {new Intl.NumberFormat("en-US").format(
                                         web.BTCAmount2
                                       )}
@@ -1551,7 +1601,7 @@ function NavBar(props) {
                                         setBtcAmount(web.BTCAmount3)
                                       }
                                     >
-                                      $
+                                      {props.user.user.user.currency}
                                       {new Intl.NumberFormat("en-US").format(
                                         web.BTCAmount3
                                       )}
@@ -1983,7 +2033,8 @@ function NavBar(props) {
                                           setBtcAmount(web.BTCAmount1)
                                         }
                                       >
-                                        ${web.BTCAmount1}
+                                        {props.user.user.user.currency}
+                                        {web.BTCAmount1}
                                       </button>
                                     </div>
                                     <div>
@@ -1994,7 +2045,7 @@ function NavBar(props) {
                                           setBtcAmount(web.BTCAmount2)
                                         }
                                       >
-                                        $
+                                        {props.user.user.user.currency}
                                         {new Intl.NumberFormat("en-US").format(
                                           web.BTCAmount2
                                         )}
@@ -2008,7 +2059,7 @@ function NavBar(props) {
                                           setBtcAmount(web.BTCAmount3)
                                         }
                                       >
-                                        $
+                                        {props.user.user.user.currency}
                                         {new Intl.NumberFormat("en-US").format(
                                           web.BTCAmount3
                                         )}
@@ -2092,7 +2143,7 @@ function NavBar(props) {
                               <p className="mb-0" style={{ color: "#fff" }}>
                                 To complete your payment, please send{" "}
                                 <strong>
-                                  $
+                                  {props.user.user.user.currency}
                                   {new Intl.NumberFormat("en-US").format(
                                     btcAmount
                                   )}
@@ -2173,7 +2224,8 @@ function NavBar(props) {
                                 </Button>
                               </div>
                               <p className="mt-4">
-                                Please confirm that you have transferred $
+                                Please confirm that you have transferred{" "}
+                                {props.user.user.user.currency}
                                 {new Intl.NumberFormat("en-US").format(
                                   btcAmount
                                 )}{" "}
@@ -2355,8 +2407,18 @@ function NavBar(props) {
               <div className="sidebar">
                 <div className="links">
                   <a href="#">
-                    <span className="font-size-15 font-weight-bold">USD</span>
-                    <span className="font-size-11">{wallet}</span>
+                    <span className="font-size-15 font-weight-bold">
+                      {props.user.user.user.currency}
+                    </span>
+                    <span className="font-size-11">
+                      {new Intl.NumberFormat("en-US").format(
+                        props.user.user.user.wallet
+                      )
+                        ? new Intl.NumberFormat("en-US").format(
+                            props.user.user.user.wallet
+                          )
+                        : 0}
+                    </span>
                   </a>
                 </div>
               </div>
@@ -2480,7 +2542,7 @@ function NavBar(props) {
                 <div className="billing-form text-left">
                   <Row>
                     <Col xs={12} md={6}>
-                      <Form.Group controlId="exampleForm.ControlInput1">
+                      <Form.Group>
                         <Form.Control
                           type="text"
                           placeholder="Your First Name"
@@ -2493,7 +2555,7 @@ function NavBar(props) {
                     </Col>
 
                     <Col xs={12} md={6}>
-                      <Form.Group controlId="exampleForm.ControlInput1">
+                      <Form.Group>
                         <Form.Control
                           type="text"
                           placeholder="Your Last Name"
@@ -2507,7 +2569,7 @@ function NavBar(props) {
                   </Row>
                   <Row>
                     <Col xs={12} md={6}>
-                      <Form.Group controlId="exampleForm.ControlInput1">
+                      <Form.Group>
                         <Form.Control
                           type="email"
                           placeholder="Your Email Address"
@@ -2519,7 +2581,7 @@ function NavBar(props) {
                       </Form.Group>
                     </Col>
                     <Col xs={12} md={6}>
-                      <Form.Group controlId="exampleForm.ControlSelect1">
+                      <Form.Group>
                         <Form.Control
                           value={yourPhoneNumber}
                           onChange={(e) => setYourPhoneNumber(e.target.value)}
@@ -2533,8 +2595,8 @@ function NavBar(props) {
                   </Row>
                   <p style={{ color: "white" }}>Country</p>
                   <Row>
-                    <Col xs={12} md={12}>
-                      <Form.Group controlId="exampleForm.ControlSelect1">
+                    <Col xs={12} md={6}>
+                      <Form.Group>
                         <Form.Control
                           as="select"
                           name="profileCountry"
@@ -2547,10 +2609,25 @@ function NavBar(props) {
                         </Form.Control>
                       </Form.Group>
                     </Col>
+                    <Col xs={12} md={6}>
+                      <Form.Group>
+                        <Form.Control
+                          as="select"
+                          defaultValue={yourCurrency}
+                          onChange={(e) => setYourCurrency(e.target.value)}
+                        >
+                          <option value="$">Select Currency</option>
+
+                          <option value="$">USD</option>
+                          <option value="€">EUR</option>
+                          <option value="£">GBP</option>
+                        </Form.Control>
+                      </Form.Group>
+                    </Col>
                   </Row>
                   <Row>
                     <Col xs={12} md={6}>
-                      <Form.Group controlId="exampleForm.ControlSelect1">
+                      <Form.Group>
                         <Form.Control
                           value={yourPassword}
                           onChange={(e) => setYourPassword(e.target.value)}
@@ -2562,7 +2639,7 @@ function NavBar(props) {
                       </Form.Group>
                     </Col>
                     <Col xs={12} md={6}>
-                      <Form.Group controlId="exampleForm.ControlSelect1">
+                      <Form.Group>
                         <Form.Control
                           value={yourPasswordComfirm}
                           onChange={(e) =>
@@ -2822,7 +2899,7 @@ function NavBar(props) {
             <div className="dash-row">
               <div className="content">
                 <div className="billing-form text-left">
-                  <Form.Group controlId="exampleForm.ControlInput1">
+                  <Form.Group>
                     <Form.Control
                       type="text"
                       placeholder="Bank Name"
@@ -2834,7 +2911,7 @@ function NavBar(props) {
                   </Form.Group>
                   <Row>
                     <Col xs={12} md={6}>
-                      <Form.Group controlId="exampleForm.ControlInput1">
+                      <Form.Group>
                         <Form.Control
                           type="text"
                           placeholder="Bank Address"
@@ -2846,7 +2923,7 @@ function NavBar(props) {
                       </Form.Group>
                     </Col>
                     <Col xs={12} md={6}>
-                      <Form.Group controlId="exampleForm.ControlInput1">
+                      <Form.Group>
                         <Form.Control
                           type="text"
                           placeholder="Bank City"
@@ -2860,7 +2937,7 @@ function NavBar(props) {
                   </Row>
                   <Row>
                     <Col xs={12} md={6}>
-                      <Form.Group controlId="exampleForm.ControlInput1">
+                      <Form.Group>
                         <Form.Control
                           type="text"
                           placeholder="Bank Country"
@@ -2872,7 +2949,7 @@ function NavBar(props) {
                       </Form.Group>
                     </Col>
                     <Col xs={12} md={6}>
-                      <Form.Group controlId="exampleForm.ControlInput1">
+                      <Form.Group>
                         <Form.Control
                           type="text"
                           placeholder="Bank Account Number/IBAN"
@@ -2886,7 +2963,7 @@ function NavBar(props) {
                   </Row>
                   <Row>
                     <Col xs={12} md={6}>
-                      <Form.Group controlId="exampleForm.ControlInput1">
+                      <Form.Group>
                         <Form.Control
                           type="text"
                           placeholder="Swift Code"
@@ -2898,7 +2975,7 @@ function NavBar(props) {
                       </Form.Group>
                     </Col>
                     <Col xs={12} md={6}>
-                      <Form.Group controlId="exampleForm.ControlInput1">
+                      <Form.Group>
                         <Form.Control
                           type="text"
                           placeholder="Full Name (First Name and Last Name)"
@@ -2912,7 +2989,7 @@ function NavBar(props) {
                   </Row>
                   <Row>
                     <Col xs={12} md={6}>
-                      <Form.Group controlId="exampleForm.ControlInput1">
+                      <Form.Group>
                         <Form.Control
                           type="text"
                           placeholder="Your Address"
@@ -2924,7 +3001,7 @@ function NavBar(props) {
                       </Form.Group>
                     </Col>
                     <Col xs={12} md={6}>
-                      <Form.Group controlId="exampleForm.ControlInput1">
+                      <Form.Group>
                         <Form.Control
                           type="text"
                           placeholder="Your Country"
@@ -2936,7 +3013,7 @@ function NavBar(props) {
                       </Form.Group>
                     </Col>
                   </Row>
-                  <Form.Group controlId="exampleForm.ControlInput1">
+                  <Form.Group>
                     <Form.Control
                       type="text"
                       placeholder="Your City"
@@ -2985,7 +3062,7 @@ function NavBar(props) {
             <div className="dash-row">
               <div className="content">
                 <div className="billing-form text-left">
-                  <Form.Group controlId="exampleForm.ControlSelect1">
+                  <Form.Group>
                     <Form.Control
                       value={cryptoCurrencyName}
                       onChange={(e) => setCryptoCurrencyName(e.target.value)}
@@ -2994,7 +3071,7 @@ function NavBar(props) {
                       <option value="BTC">BTC</option>
                     </Form.Control>
                   </Form.Group>
-                  <Form.Group controlId="exampleForm.ControlInput1">
+                  <Form.Group>
                     <Form.Control
                       type="text"
                       placeholder="Address"
