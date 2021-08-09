@@ -20,7 +20,7 @@ const LoginApp=(props)=> {
   const[loginCarouselImage2, setLoginCarouselImage2]=useState("")
   const[loginCarouselImage3, setLoginCarouselImage3]=useState("")
   const [submitLoading, setSubmitLoading] = useState(false);
-  const endpoint = "https://prolivetrader-netbackend-vhgys.ondigitalocean.app";
+  const endpoint = "https://backend360-45ylc.ondigitalocean.app";
   const closeForex = () => {
     console.log("input a function here to close forex");
   };
@@ -120,7 +120,7 @@ if(props.site){
   useEffect(()=>{
     (async () => {
       let response = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/${
+        `https://backend360-45ylc.ondigitalocean.app/api/trade/${
           user.user ? user.user.user._id : ""
         }`
       );
@@ -133,7 +133,7 @@ if(props.site){
 
     (async () => {
       let response = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${
+        `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${
           user.user ? user.user.user._id : ""
         }`
       );

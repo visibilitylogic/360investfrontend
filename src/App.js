@@ -55,7 +55,7 @@ function App() {
   useEffect(() => {
     (async () => {
       let response = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/site`
+        `https://backend360-45ylc.ondigitalocean.app/api/site`
       );
       let data = await response.json();
       setSite({
@@ -70,7 +70,7 @@ function App() {
   //   (async () => {
   //     console.log(user,'hhhh')
   //     let response = await fetch(
-  //       `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${user.user._id}`
+  //       `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${user.user._id}`
   //     );
   //     let data = await response.json();
   //     setUser({
@@ -84,7 +84,7 @@ function App() {
   // useEffect(() => {
   //   (async () => {
   //     let response = await fetch(
-  //       `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${user.user.user._id}`
+  //       `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${user.user.user._id}`
   //     );
   //     user = await response.json();
   //     if (user !== undefined){
@@ -103,7 +103,7 @@ function App() {
   useEffect(() => {
     (async () => {
       let resp = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/site`
+        `https://backend360-45ylc.ondigitalocean.app/api/site`
       );
       let web = await resp.json();
       setWeb({
@@ -186,7 +186,7 @@ function App() {
     e.preventDefault();
     console.log("in submit", data);
 
-    fetch("https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/login", {
+    fetch("https://backend360-45ylc.ondigitalocean.app/api/login", {
       mode: "cors",
       method: "POST",
       headers: {
@@ -224,7 +224,7 @@ function App() {
     e.preventDefault();
     console.log("in submit", data);
 
-    fetch("https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/registration", {
+    fetch("https://backend360-45ylc.ondigitalocean.app/api/registration", {
       mode: "cors",
       method: "POST",
       headers: {

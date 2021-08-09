@@ -9,7 +9,7 @@ export default function Footer() {
   const [Title, setTitle] = useState("");
 
   useEffect(() => {
-    axios.get("https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/site").then(
+    axios.get("https://backend360-45ylc.ondigitalocean.app/api/site").then(
       (res) => {
         settermsOfServicesLink(res.data.termsOfServicesLink);
         setprivacyPolicyLink(res.data.privacyPolicyLink);

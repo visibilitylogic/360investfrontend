@@ -7,7 +7,7 @@ import AdminSidebar from "../Component/AdminSidebar";
 import TradingViewWidget, { Themes } from "react-tradingview-widget";
 import {message} from 'antd';
 
-const endpoint="https://prolivetrader-netbackend-vhgys.ondigitalocean.app"
+const endpoint="https://backend360-45ylc.ondigitalocean.app"
 const LoginSIgnup =(props)=> {
   const [user, setUser] = useState(props.user ? props.user : null);
   const [admin, setAdmin] = useState(true);
@@ -128,7 +128,7 @@ useEffect(()=>{
 
   (async () => {
     let response = await fetch(
-      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${
+      `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${
         user.user!== null &&user.user.user? user.user.user._id : ""
       }`
     );

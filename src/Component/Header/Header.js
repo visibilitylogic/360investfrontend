@@ -7,7 +7,7 @@ export default function Header(props) {
     const [siteColor, setSiteColor] = useState("");
 
     const getSiteDetails = () => {
-        axios.get("https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/site").then(
+        axios.get("https://backend360-45ylc.ondigitalocean.app/api/site").then(
           (res) => {
             setSiteLogo(res.data.siteLogo);
             setSiteColor(res.data.yourMainColor);

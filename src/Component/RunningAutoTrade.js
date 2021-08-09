@@ -7,7 +7,7 @@ const RunningAutoTrade = ({ children }) => {
   // const [autotradingResponded, setAutotradResponded] = useState("");
   // useEffect(() => {
   //   axios
-  //     .get(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/autocopytrade`)
+  //     .get(`https://backend360-45ylc.ondigitalocean.app/api/autocopytrade`)
   //     .then((response) => {
   //       response.data.forEach((trade) => Trade(trade._id));
   //     });
@@ -16,7 +16,7 @@ const RunningAutoTrade = ({ children }) => {
   // const Trade = (_id) => {
   //   axios
   //     .put(
-  //       `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/autocopytrade/trade/${_id}`
+  //       `https://backend360-45ylc.ondigitalocean.app/api/autocopytrade/trade/${_id}`
   //     )
   //     .then((response) => {
   //       setAutotradResponded(true);

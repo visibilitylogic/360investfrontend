@@ -55,7 +55,7 @@ import { message } from "antd";
 import Select from "react-select";
 import countryList from "react-select-country-list";
 import qrcode from "./../../AccountsAsset/images/qrcode.png";
-const endpoint = "https://prolivetrader-netbackend-vhgys.ondigitalocean.app";
+const endpoint = "https://backend360-45ylc.ondigitalocean.app";
 
 /*  */
 
@@ -184,7 +184,7 @@ function NavBar(props) {
   useEffect(() => {
     let getSiteData = async () => {
       const res = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/site`
+        `https://backend360-45ylc.ondigitalocean.app/api/site`
       );
       let siteData = await res.json();
       setData(siteData);
@@ -374,7 +374,7 @@ function NavBar(props) {
   const saveCryptoCurrency = () => {
     (async () => {
       let response = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/paymentDetails/${userID}`
+        `https://backend360-45ylc.ondigitalocean.app/api/profile/paymentDetails/${userID}`
       );
       let data = await response.json();
       setPayMethod(data);
@@ -386,7 +386,7 @@ function NavBar(props) {
     };
 
     fetch(
-      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/usercryptodetails`,
+      `https://backend360-45ylc.ondigitalocean.app/api/profile/usercryptodetails`,
       {
         mode: "cors",
         method: "PUT",
@@ -416,7 +416,7 @@ function NavBar(props) {
   const saveBankDetails = () => {
     (async () => {
       let response = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/paymentDetails/${userID}`
+        `https://backend360-45ylc.ondigitalocean.app/api/profile/paymentDetails/${userID}`
       );
       let data = await response.json();
       // setPayMethod(data)
@@ -440,7 +440,7 @@ function NavBar(props) {
     };
 
     fetch(
-      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/userbankdetails`,
+      `https://backend360-45ylc.ondigitalocean.app/api/profile/userbankdetails`,
       {
         mode: "cors",
         method: "PUT",
@@ -485,7 +485,7 @@ function NavBar(props) {
         methodDetails: methodDetails,
       };
 
-      fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/withdraw`, {
+      fetch(`https://backend360-45ylc.ondigitalocean.app/api/withdraw`, {
         mode: "cors",
         method: "POST",
         headers: {
@@ -519,7 +519,7 @@ function NavBar(props) {
       name: yourName,
     };
 
-    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/deposit`, {
+    fetch(`https://backend360-45ylc.ondigitalocean.app/api/deposit`, {
       mode: "cors",
       method: "POST",
       headers: {
@@ -562,7 +562,7 @@ function NavBar(props) {
       yourState: yourState,
     };
 
-    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/deposit`, {
+    fetch(`https://backend360-45ylc.ondigitalocean.app/api/deposit`, {
       mode: "cors",
       method: "POST",
       headers: {
@@ -592,7 +592,7 @@ function NavBar(props) {
     if (props && props.user) {
       (async () => {
         let response = await fetch(
-          `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/paymentDetails/${props.user.user.user._id}`
+          `https://backend360-45ylc.ondigitalocean.app/api/profile/paymentDetails/${props.user.user.user._id}`
         );
         let data = await response.json();
         // console.log("payment", data);
@@ -703,7 +703,7 @@ function NavBar(props) {
     }
   };
   const updateProfile = () => {
-    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/update`, {
+    fetch(`https://backend360-45ylc.ondigitalocean.app/api/profile/update`, {
       mode: "cors",
       method: "PUT",
       headers: {
@@ -729,7 +729,7 @@ function NavBar(props) {
       message.error("Password must match");
     } else
       fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/update/user`,
+        `https://backend360-45ylc.ondigitalocean.app/api/profile/update/user`,
         {
           mode: "cors",
           method: "PUT",
@@ -781,7 +781,7 @@ function NavBar(props) {
   // useEffect(() => {
   //   let getSiteData = async () => {
   //     let response = await fetch(
-  //       `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/paymentDetails/${userID}`
+  //       `https://backend360-45ylc.ondigitalocean.app/api/profile/paymentDetails/${userID}`
   //     );
   //     let data = await response.json();
   //     console.log(data, "ShowpayMethod");

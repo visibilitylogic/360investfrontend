@@ -50,7 +50,7 @@ const General = (props) => {
   const [termsOfServicesLink, settermsOfServicesLink]=useState("")
 
   const [submitLoading, setSubmitLoading] = useState(false);
-  const endpoint = "https://prolivetrader-netbackend-vhgys.ondigitalocean.app";
+  const endpoint = "https://backend360-45ylc.ondigitalocean.app";
   function handleChangeCountry(value) {
     setBlackListedCountry(value);
   }

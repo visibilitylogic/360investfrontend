@@ -8,7 +8,7 @@ import TradingViewWidget, { Themes } from "react-tradingview-widget";
 import { Select, message } from "antd";
 import axios from "axios";
 import "antd/dist/antd.css";
-const endpoint = "https://prolivetrader-netbackend-vhgys.ondigitalocean.app";
+const endpoint = "https://backend360-45ylc.ondigitalocean.app";
 const Templates=(props)=>{
   const [orders, setOrders] = useState();
   const [user, setUser] = useState(props.user ? props.user : null);
@@ -86,7 +86,7 @@ useEffect(()=>{
 
     (async () => {
       let response = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/${
+        `https://backend360-45ylc.ondigitalocean.app/api/trade/${
           user.user ? user.user.user._id : ""
         }`
       );
@@ -96,7 +96,7 @@ useEffect(()=>{
 
     (async () => {
       let response = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${
+        `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${
           user.user ? user.user.user._id : ""
         }`
       );

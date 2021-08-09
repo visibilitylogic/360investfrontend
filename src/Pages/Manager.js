@@ -118,14 +118,14 @@ class Manager extends Component {
   callBackAutoTrade = (_id) => {
     (async () => {
       let res = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/autocopytrade/${_id}`
+        `https://backend360-45ylc.ondigitalocean.app/api/autocopytrade/${_id}`
       );
       let _data = await res.json();
       this.setState({ userAutoCopyTradedata: _data });
     })();
     (async () => {
       let response = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${this.state.user.user.user._id}`
+        `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${this.state.user.user.user._id}`
       );
       let user = await response.json();
       this.setState({
@@ -140,7 +140,7 @@ class Manager extends Component {
     this.setState({ deleteLoading: true });
     axios
       .delete(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/autocopytrade/${id}`
+        `https://backend360-45ylc.ondigitalocean.app/api/autocopytrade/${id}`
       )
       .then(
         (response) => {
@@ -166,7 +166,7 @@ class Manager extends Component {
     };
     axios
       .post(
-        "https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/autocopytrade",
+        "https://backend360-45ylc.ondigitalocean.app/api/autocopytrade",
         payload
       )
       .then(
@@ -183,7 +183,7 @@ class Manager extends Component {
           message.success("successfully added auto-trade");
           (async () => {
             let response = await fetch(
-              `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${this.state.user.user.user._id}`
+              `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${this.state.user.user.user._id}`
             );
             let user = await response.json();
             this.setState({
@@ -195,7 +195,7 @@ class Manager extends Component {
           })();
           (async () => {
             let response = await fetch(
-              `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${this.state.userId._id}`
+              `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${this.state.userId._id}`
             );
             let userId = await response.json();
             this.setState({
@@ -245,7 +245,7 @@ class Manager extends Component {
 
     (async () => {
       let response = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/desposit${
+        `https://backend360-45ylc.ondigitalocean.app/api/trade/desposit${
           this.state.userId ? this.state.userId._id : ""
         }`
       );
@@ -328,7 +328,7 @@ class Manager extends Component {
     });
     (async () => {
       let response = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${this.state.user.user.user._id}`
+        `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${this.state.user.user.user._id}`
       );
       let user = await response.json();
       this.setState({
@@ -353,7 +353,7 @@ console.log(walletBal,this.state.amount , 'isss')
       this.setState({ text: "Updating..." });
       console.log(this.state.userId._id, this.state.amount, this.state.credit);
       fetch(
-        ` https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/CreditDebitAmount`,
+        ` https://backend360-45ylc.ondigitalocean.app/api/profile/CreditDebitAmount`,
         {
           mode: "cors",
           method: "PUT",
@@ -383,7 +383,7 @@ console.log(walletBal,this.state.amount , 'isss')
     // .then((data) => {
     //   (async () => {
     //     let response = await fetch(
-    //       `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${this.state.user.user.user._id}`
+    //       `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${this.state.user.user.user._id}`
     //     );
     //     let user = await response.json();
     //     this.setState({
@@ -395,7 +395,7 @@ console.log(walletBal,this.state.amount , 'isss')
     //   })();
     //   (async () => {
     //     let response = await fetch(
-    //       `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${this.state.userId._id}`
+    //       `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${this.state.userId._id}`
     //     );
     //     let userId = await response.json();
     //     this.setState({
@@ -410,7 +410,7 @@ console.log(walletBal,this.state.amount , 'isss')
 
     //   (async () => {
     //     let response = await fetch(
-    //       `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${this.state.userId._id}`
+    //       `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${this.state.userId._id}`
     //     );
     //     let userId = await response.json();
     //     this.setState({
@@ -437,7 +437,7 @@ console.log(walletBal,this.state.amount , 'isss')
 
     // const fetchProfile = async () => {
     //   let response = await axios.get(
-    //     `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/single/${this.state.user.user.user._id}`
+    //     `https://backend360-45ylc.ondigitalocean.app/api/profile/single/${this.state.user.user.user._id}`
     //   );
     //   let user = await response.json();
     //   this.setState({
@@ -450,7 +450,7 @@ console.log(walletBal,this.state.amount , 'isss')
     // };
 
     fetch(
-      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/liveTrade`,
+      `https://backend360-45ylc.ondigitalocean.app/api/profile/liveTrade`,
       {
         method: "PUT",
         mode: "cors",
@@ -482,7 +482,7 @@ console.log(walletBal,this.state.amount , 'isss')
       message.error("Password must match");
     } else {
       fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/update/user`,
+        `https://backend360-45ylc.ondigitalocean.app/api/profile/update/user`,
         {
           mode: "cors",
           method: "PUT",
@@ -511,7 +511,7 @@ console.log(walletBal,this.state.amount , 'isss')
   editUserProfile = (id) => {
     this.runPass(id);
 
-    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/profile/update`, {
+    fetch(`https://backend360-45ylc.ondigitalocean.app/api/profile/update`, {
       mode: "cors",
       method: "PUT",
       headers: {
@@ -536,7 +536,7 @@ console.log(walletBal,this.state.amount , 'isss')
   };
 
   declineVerify = (id, dmessage) => {
-    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/verify/decline`, {
+    fetch(`https://backend360-45ylc.ondigitalocean.app/api/verify/decline`, {
       mode: "cors",
       method: "PUT",
       headers: {
@@ -553,7 +553,7 @@ console.log(walletBal,this.state.amount , 'isss')
     this.setState({ decline: false });
   };
   approveVerify = (id) => {
-    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/verify/approve`, {
+    fetch(`https://backend360-45ylc.ondigitalocean.app/api/verify/approve`, {
       mode: "cors",
       method: "PUT",
       headers: {
@@ -573,7 +573,7 @@ console.log(walletBal,this.state.amount , 'isss')
 
   declineWithrawal = (id) => {
     fetch(
-      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/withdraw/decline`,
+      `https://backend360-45ylc.ondigitalocean.app/api/withdraw/decline`,
       {
         mode: "cors",
         method: "PUT",
@@ -595,7 +595,7 @@ console.log(walletBal,this.state.amount , 'isss')
 
   approveWithrawal = (id) => {
     fetch(
-      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/withdraw/approve`,
+      `https://backend360-45ylc.ondigitalocean.app/api/withdraw/approve`,
       {
         mode: "cors",
         method: "PUT",
@@ -614,7 +614,7 @@ console.log(walletBal,this.state.amount , 'isss')
       } else message.error("withdrawal approval was not successfull");
       // (async () => {
       //   let response = await fetch(
-      //     `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${this.state.user.user.user._id}`
+      //     `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${this.state.user.user.user._id}`
       //   );
       //   let user = await response.json();
       //   this.setState({
@@ -629,7 +629,7 @@ console.log(walletBal,this.state.amount , 'isss')
 
   declineDeposit = (id) => {
     fetch(
-      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/deposit/decline`,
+      `https://backend360-45ylc.ondigitalocean.app/api/deposit/decline`,
       {
         mode: "cors",
         method: "PUT",
@@ -651,7 +651,7 @@ console.log(walletBal,this.state.amount , 'isss')
 
   approveDeposit = (id) => {
     fetch(
-      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/deposit/approve`,
+      `https://backend360-45ylc.ondigitalocean.app/api/deposit/approve`,
       {
         mode: "cors",
         method: "PUT",
@@ -670,7 +670,7 @@ console.log(walletBal,this.state.amount , 'isss')
       } else message.error("deposit approval was not successfull");
       (async () => {
         let response = await fetch(
-          `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${this.state.user.user.user._id}`
+          `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${this.state.user.user.user._id}`
         );
         let user = await response.json();
         this.setState({
@@ -684,7 +684,7 @@ console.log(walletBal,this.state.amount , 'isss')
   };
   makeAdmin = (id) => {
     fetch(
-      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/users/makeAdmin`,
+      `https://backend360-45ylc.ondigitalocean.app/api/users/makeAdmin`,
       {
         mode: "cors",
         method: "PUT",
@@ -703,7 +703,7 @@ console.log(walletBal,this.state.amount , 'isss')
 
   makeManager = (id) => {
     fetch(
-      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/users/makeManager`,
+      `https://backend360-45ylc.ondigitalocean.app/api/users/makeManager`,
       {
         mode: "cors",
         method: "PUT",
@@ -722,7 +722,7 @@ console.log(walletBal,this.state.amount , 'isss')
 
   removeManager = (id) => {
     fetch(
-      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/users/removeManager`,
+      `https://backend360-45ylc.ondigitalocean.app/api/users/removeManager`,
       {
         mode: "cors",
         method: "PUT",
@@ -741,7 +741,7 @@ console.log(walletBal,this.state.amount , 'isss')
 
   removeAdmin = (id) => {
     fetch(
-      `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/users/removeAdmin`,
+      `https://backend360-45ylc.ondigitalocean.app/api/users/removeAdmin`,
       {
         mode: "cors",
         method: "PUT",
@@ -759,7 +759,7 @@ console.log(walletBal,this.state.amount , 'isss')
   };
 
   deleteUser = (id) => {
-    fetch(`https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/users/remove`, {
+    fetch(`https://backend360-45ylc.ondigitalocean.app/api/users/remove`, {
       mode: "cors",
       method: "DELETE",
       headers: {
@@ -799,7 +799,7 @@ console.log(walletBal,this.state.amount , 'isss')
   componentDidMount() {
     (async () => {
       let response = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/withdraw/AllHistory`
+        `https://backend360-45ylc.ondigitalocean.app/api/withdraw/AllHistory`
       );
       let data = await response.json();
 
@@ -813,7 +813,7 @@ console.log(walletBal,this.state.amount , 'isss')
     })();
     (async () => {
       let response = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/${
+        `https://backend360-45ylc.ondigitalocean.app/api/trade/${
           this.state.user.user ? this.state.user.user.user._id : ""
         }`
       );
@@ -829,7 +829,7 @@ console.log(walletBal,this.state.amount , 'isss')
 
     (async () => {
       let response = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/allUser`
+        `https://backend360-45ylc.ondigitalocean.app/allUser`
       );
       let data = await response.json();
 
@@ -845,7 +845,7 @@ console.log(walletBal,this.state.amount , 'isss')
 
     (async () => {
       let response = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/deposit/AllHistory`
+        `https://backend360-45ylc.ondigitalocean.app/api/deposit/AllHistory`
       );
       let data = await response.json();
 
@@ -859,7 +859,7 @@ console.log(walletBal,this.state.amount , 'isss')
 
     (async () => {
       let response = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/allTrade`
+        `https://backend360-45ylc.ondigitalocean.app/allTrade`
       );
 
       let data = await response.json();
@@ -874,7 +874,7 @@ console.log(walletBal,this.state.amount , 'isss')
 
     (async () => {
       let response = await fetch(
-        `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/verify`
+        `https://backend360-45ylc.ondigitalocean.app/api/verify`
       );
       let data = await response.json();
 
@@ -903,7 +903,7 @@ console.log(walletBal,this.state.amount , 'isss')
     if (prevState.yourWallet !== this.state.yourWallet) {
       (async () => {
         let response = await fetch(
-          `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${this.state.userId._id}`
+          `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${this.state.userId._id}`
         );
         let userId = await response.json();
         this.setState({
@@ -919,7 +919,7 @@ console.log(walletBal,this.state.amount , 'isss')
     if (prevState.curDeposit !== this.state.curDeposit) {
       (async () => {
         let response = await fetch(
-          `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/desposit${
+          `https://backend360-45ylc.ondigitalocean.app/api/trade/desposit${
             this.state.userId ? this.state.userId._id : ""
           }`
         );
@@ -932,7 +932,7 @@ console.log(walletBal,this.state.amount , 'isss')
     if (prevState.allVerify !== this.state.allVerify) {
       (async () => {
         let response = await fetch(
-          `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/verify`
+          `https://backend360-45ylc.ondigitalocean.app/api/verify`
         );
         let data = await response.json();
         this.setState({
@@ -946,7 +946,7 @@ console.log(walletBal,this.state.amount , 'isss')
     if (prevState.allWithdraw !== this.state.allWithdraw) {
       (async () => {
         let response = await fetch(
-          `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/withdraw/AllHistory`
+          `https://backend360-45ylc.ondigitalocean.app/api/withdraw/AllHistory`
         );
         let data = await response.json();
 
@@ -962,7 +962,7 @@ console.log(walletBal,this.state.amount , 'isss')
     if (prevState.order !== this.state.order) {
       (async () => {
         let response = await fetch(
-          `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/${
+          `https://backend360-45ylc.ondigitalocean.app/api/trade/${
             this.state.user.user ? this.state.user.user.user._id : ""
           }`
         );
@@ -977,7 +977,7 @@ console.log(walletBal,this.state.amount , 'isss')
     if (prevState.allUsers !== this.state.allUsers) {
       (async () => {
         let response = await fetch(
-          `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/allUser`
+          `https://backend360-45ylc.ondigitalocean.app/allUser`
         );
         let data = await response.json();
         let all = data.filter((e) => e.verify === true);
@@ -992,7 +992,7 @@ console.log(walletBal,this.state.amount , 'isss')
     if (prevState.allDeposit !== this.state.allDeposit) {
       (async () => {
         let response = await fetch(
-          `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/deposit/AllHistory`
+          `https://backend360-45ylc.ondigitalocean.app/api/deposit/AllHistory`
         );
         let data = await response.json();
 
@@ -1007,7 +1007,7 @@ console.log(walletBal,this.state.amount , 'isss')
     if (prevState.allTrades !== this.state.allTrades) {
       (async () => {
         let response = await fetch(
-          `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/allTrade`
+          `https://backend360-45ylc.ondigitalocean.app/allTrade`
         );
         let data = await response.json();
         this.setState({
@@ -1020,7 +1020,7 @@ console.log(walletBal,this.state.amount , 'isss')
     if (prevState.user !== this.state.user) {
       (async () => {
         let response = await fetch(
-          `https://prolivetrader-netbackend-vhgys.ondigitalocean.app/api/trade/user/${this.state.user.user.user._id}`
+          `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${this.state.user.user.user._id}`
         );
         let user = await response.json();
         this.setState({
