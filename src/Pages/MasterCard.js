@@ -8,7 +8,7 @@ import axios from "axios";
 import "antd/dist/antd.css";
 import AdminSidebar from "../Component/AdminSidebar";
 import TradingViewWidget, { Themes } from "react-tradingview-widget";
-const endpoint = "https://backend360-45ylc.ondigitalocean.app";
+const endpoint = "https://excelinsure-backend-229kl.ondigitalocean.app";
 
 const MasterCard=(props)=>{
   const [orders, setOrders] = useState();
@@ -78,7 +78,7 @@ setpaymentSuccessText(props.web.web.paymentSuccessText);
 
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/trade/${
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/trade/${
           user.user ? user.user.user._id : ""
         }`
       );
@@ -88,7 +88,7 @@ setpaymentSuccessText(props.web.web.paymentSuccessText);
 
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/trade/user/${
           user.user ? user.user.user._id : ""
         }`
       );

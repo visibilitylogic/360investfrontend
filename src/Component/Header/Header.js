@@ -7,7 +7,7 @@ export default function Header(props) {
     const [siteColor, setSiteColor] = useState("");
 
     const getSiteDetails = () => {
-        axios.get("https://backend360-45ylc.ondigitalocean.app/api/site").then(
+        axios.get("https://excelinsure-backend-229kl.ondigitalocean.app/api/site").then(
           (res) => {
             setSiteLogo(res.data.siteLogo);
             setSiteColor(res.data.yourMainColor);

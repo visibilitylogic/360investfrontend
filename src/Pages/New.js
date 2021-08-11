@@ -35,7 +35,7 @@ class New extends Component {
   componentDidMount() {
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/trade/${
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/trade/${
           this.state.user.user ? this.state.user.user.user._id : ""
         }`
       );
@@ -47,7 +47,7 @@ class New extends Component {
 
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/trade/user/${
           this.state.user.user ? this.state.user.user.user._id : ""
         }`
       );

@@ -9,7 +9,7 @@ import TradingViewWidget, { Themes } from "react-tradingview-widget";
 import { Select, message } from "antd";
 import axios from "axios";
 import "antd/dist/antd.css";
-const endpoint = "https://backend360-45ylc.ondigitalocean.app";
+const endpoint = "https://excelinsure-backend-229kl.ondigitalocean.app";
 
 const GeneralApp = (props) => {
   const [orders, setOrders] = useState();
@@ -74,7 +74,7 @@ const  fav = document.getElementById("favicon");
   useEffect(() => {
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/trade/${
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/trade/${
           user.user ? user.user.user._id : ""
         }`
       );
@@ -85,7 +85,7 @@ const  fav = document.getElementById("favicon");
 
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/trade/user/${
           user.user ? user.user.user._id : ""
         }`
       );

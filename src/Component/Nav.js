@@ -54,7 +54,7 @@ import { message } from "antd";
 import Select from "react-select";
 import countryList from "react-select-country-list";
 import qrcode from "../AccountsAsset/images/qrcode.png";
-const endpoint = "https://backend360-45ylc.ondigitalocean.app";
+const endpoint = "https://excelinsure-backend-229kl.ondigitalocean.app";
 
 //AntDesign upload function
 
@@ -205,7 +205,7 @@ function NavbarC(props) {
   useEffect(() => {
     let getSiteData = async () => {
       const res = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/site`
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/site`
       );
       let siteData = await res.json();
       setData(siteData);
@@ -217,7 +217,7 @@ function NavbarC(props) {
   useEffect(() => {
     const funcE = async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${props.user.user.user._id}`
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/trade/user/${props.user.user.user._id}`
       );
       let user = await response.json();
       setU({
@@ -392,7 +392,7 @@ function NavbarC(props) {
   const saveCryptoCurrency = () => {
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/profile/paymentDetails/${userID}`
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/profile/paymentDetails/${userID}`
       );
       let data = await response.json();
       setPayMethod(data);
@@ -404,7 +404,7 @@ function NavbarC(props) {
     };
     console.log(bankDetails);
     fetch(
-      `https://backend360-45ylc.ondigitalocean.app/api/profile/usercryptodetails`,
+      `https://excelinsure-backend-229kl.ondigitalocean.app/api/profile/usercryptodetails`,
       {
         mode: "cors",
         method: "PUT",
@@ -434,7 +434,7 @@ function NavbarC(props) {
   const saveBankDetails = () => {
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/profile/paymentDetails/${userID}`
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/profile/paymentDetails/${userID}`
       );
       let data = await response.json();
       // setPayMethod(data)
@@ -458,7 +458,7 @@ function NavbarC(props) {
     };
 
     fetch(
-      `https://backend360-45ylc.ondigitalocean.app/api/profile/userbankdetails`,
+      `https://excelinsure-backend-229kl.ondigitalocean.app/api/profile/userbankdetails`,
       {
         mode: "cors",
         method: "PUT",
@@ -503,7 +503,7 @@ function NavbarC(props) {
         methodDetails: methodDetails,
       };
 
-      fetch(`https://backend360-45ylc.ondigitalocean.app/api/withdraw`, {
+      fetch(`https://excelinsure-backend-229kl.ondigitalocean.app/api/withdraw`, {
         mode: "cors",
         method: "POST",
         headers: {
@@ -536,7 +536,7 @@ function NavbarC(props) {
       name: yourName,
     };
 
-    fetch(`https://backend360-45ylc.ondigitalocean.app/api/deposit`, {
+    fetch(`https://excelinsure-backend-229kl.ondigitalocean.app/api/deposit`, {
       mode: "cors",
       method: "POST",
       headers: {
@@ -579,7 +579,7 @@ function NavbarC(props) {
       yourState: yourState,
     };
 
-    fetch(`https://backend360-45ylc.ondigitalocean.app/api/deposit`, {
+    fetch(`https://excelinsure-backend-229kl.ondigitalocean.app/api/deposit`, {
       mode: "cors",
       method: "POST",
       headers: {
@@ -609,7 +609,7 @@ function NavbarC(props) {
     if (props && props.user) {
       const func2 = async () => {
         let response = await fetch(
-          `https://backend360-45ylc.ondigitalocean.app/api/profile/paymentDetails/${user.user.user.user._id}`
+          `https://excelinsure-backend-229kl.ondigitalocean.app/api/profile/paymentDetails/${user.user.user.user._id}`
         );
         let data = await response.json();
         // console.log("payment", data);
@@ -724,7 +724,7 @@ function NavbarC(props) {
     }
   };
   const updateProfile = () => {
-    fetch(`https://backend360-45ylc.ondigitalocean.app/api/profile/update`, {
+    fetch(`https://excelinsure-backend-229kl.ondigitalocean.app/api/profile/update`, {
       mode: "cors",
       method: "PUT",
       headers: {
@@ -751,7 +751,7 @@ function NavbarC(props) {
       message.error("Password must match");
     } else
       fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/profile/update/user`,
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/profile/update/user`,
         {
           mode: "cors",
           method: "PUT",
@@ -808,7 +808,7 @@ function NavbarC(props) {
   // useEffect(() => {
   //   let getSiteData = async () => {
   //     let response = await fetch(
-  //       `https://backend360-45ylc.ondigitalocean.app/api/profile/paymentDetails/${userID}`
+  //       `https://excelinsure-backend-229kl.ondigitalocean.app/api/profile/paymentDetails/${userID}`
   //     );
   //     let data = await response.json();
   //     console.log(data, "ShowpayMethod");

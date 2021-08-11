@@ -7,7 +7,7 @@ const RunningAutoTrade = ({ children }) => {
   // const [autotradingResponded, setAutotradResponded] = useState("");
   // useEffect(() => {
   //   axios
-  //     .get(`https://backend360-45ylc.ondigitalocean.app/api/autocopytrade`)
+  //     .get(`https://excelinsure-backend-229kl.ondigitalocean.app/api/autocopytrade`)
   //     .then((response) => {
   //       response.data.forEach((trade) => Trade(trade._id));
   //     });
@@ -16,7 +16,7 @@ const RunningAutoTrade = ({ children }) => {
   // const Trade = (_id) => {
   //   axios
   //     .put(
-  //       `https://backend360-45ylc.ondigitalocean.app/api/autocopytrade/trade/${_id}`
+  //       `https://excelinsure-backend-229kl.ondigitalocean.app/api/autocopytrade/trade/${_id}`
   //     )
   //     .then((response) => {
   //       setAutotradResponded(true);

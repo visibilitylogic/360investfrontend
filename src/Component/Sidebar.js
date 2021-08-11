@@ -98,7 +98,7 @@ class Sidebar extends Component {
     (async () => {
       console.log("rrrrrrrrrrr");
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/trade/close/${id}/${amount}/${newAmount}`
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/trade/close/${id}/${amount}/${newAmount}`
       );
       let value = id;
 
@@ -301,7 +301,7 @@ class Sidebar extends Component {
     e.preventDefault();
 
     fetch(
-      `https://backend360-45ylc.ondigitalocean.app/api/trade/${this.state.user.user.user._id}`,
+      `https://excelinsure-backend-229kl.ondigitalocean.app/api/trade/${this.state.user.user.user._id}`,
       {
         mode: "cors",
         method: "POST",
@@ -332,7 +332,7 @@ class Sidebar extends Component {
     e.preventDefault();
 
     fetch(
-      `https://backend360-45ylc.ondigitalocean.app/api/trade/${this.state.user.user.user._id}`,
+      `https://excelinsure-backend-229kl.ondigitalocean.app/api/trade/${this.state.user.user.user._id}`,
       {
         mode: "cors",
         method: "POST",
@@ -482,7 +482,7 @@ class Sidebar extends Component {
     console.log("dfffff", this.state.fileUp);
 
     fetch(
-      `https://backend360-45ylc.ondigitalocean.app/api/registration/file/${this.state.user.user.user._id}`,
+      `https://excelinsure-backend-229kl.ondigitalocean.app/api/registration/file/${this.state.user.user.user._id}`,
       {
         mode: "cors",
         method: "POST",

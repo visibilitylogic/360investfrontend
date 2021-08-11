@@ -51,7 +51,7 @@ class Admin extends Component {
 
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/trade/${
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/trade/${
           this.state.user.user ? this.state.user.user.user._id : ""
         }`
       );
@@ -62,7 +62,7 @@ class Admin extends Component {
     })();
 
     (async () => {
-      let response = await fetch(`https://backend360-45ylc.ondigitalocean.app/allUser`);
+      let response = await fetch(`https://excelinsure-backend-229kl.ondigitalocean.app/allUser`);
       let data = await response.json();
       console.log(data);
 
@@ -72,7 +72,7 @@ class Admin extends Component {
     })();
 
     (async () => {
-      let response = await fetch(`https://backend360-45ylc.ondigitalocean.app/allWithdraw`);
+      let response = await fetch(`https://excelinsure-backend-229kl.ondigitalocean.app/allWithdraw`);
       let data = await response.json();
 
       console.log(data);
@@ -82,7 +82,7 @@ class Admin extends Component {
     })();
 
     (async () => {
-      let response = await fetch(`https://backend360-45ylc.ondigitalocean.app/allDeposit`);
+      let response = await fetch(`https://excelinsure-backend-229kl.ondigitalocean.app/allDeposit`);
       let data = await response.json();
       console.log(data);
 
@@ -92,7 +92,7 @@ class Admin extends Component {
     })();
 
     (async () => {
-      let response = await fetch(`https://backend360-45ylc.ondigitalocean.app/allTrade`);
+      let response = await fetch(`https://excelinsure-backend-229kl.ondigitalocean.app/allTrade`);
 
       let data = await response.json();
       console.log(data);
@@ -103,7 +103,7 @@ class Admin extends Component {
     })();
 
     (async () => {
-      let response = await fetch(`https://backend360-45ylc.ondigitalocean.app/allVerify`);
+      let response = await fetch(`https://excelinsure-backend-229kl.ondigitalocean.app/allVerify`);
       let data = await response.json();
       console.log(data);
 
@@ -113,7 +113,7 @@ class Admin extends Component {
     })();
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/trade/${
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/trade/${
           this.state.user.user ? this.state.user.user.user._id : ""
         }`
       );
@@ -125,7 +125,7 @@ class Admin extends Component {
 
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/trade/user/${
           this.state.user.user ? this.state.user.user.user._id : ""
         }`
       );

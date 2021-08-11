@@ -15,7 +15,7 @@ import {
 } from "react-bootstrap-icons";
 import axios from "axios";
 import "../AccountsAsset/Foot.css";
-const endpoint = "https://backend360-45ylc.ondigitalocean.app";
+const endpoint = "https://excelinsure-backend-229kl.ondigitalocean.app";
 export default function Foot() {
   const [currentDate] = useState(Date().toLocaleString());
   const [support, setSupport] = useState(false);

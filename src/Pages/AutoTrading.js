@@ -57,7 +57,7 @@ class AutoTrading extends Component {
   componentDidMount() {
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/copytrade`
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/copytrade`
       );
       let data = await response.json();
       this.setState({
@@ -67,7 +67,7 @@ class AutoTrading extends Component {
     (async () => {
       this.setState({ getLoading: true });
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/trade/${
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/trade/${
           this.state.user.user ? this.state.user.user.user._id : ""
         }`
       );
@@ -80,7 +80,7 @@ class AutoTrading extends Component {
 
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/allUser`
+        `https://excelinsure-backend-229kl.ondigitalocean.app/allUser`
       );
       let data = await response.json();
       console.log(data);
@@ -92,7 +92,7 @@ class AutoTrading extends Component {
 
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/allWithdraw`
+        `https://excelinsure-backend-229kl.ondigitalocean.app/allWithdraw`
       );
       let data = await response.json();
 
@@ -104,7 +104,7 @@ class AutoTrading extends Component {
 
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/allDeposit`
+        `https://excelinsure-backend-229kl.ondigitalocean.app/allDeposit`
       );
       let data = await response.json();
       console.log(data);
@@ -116,7 +116,7 @@ class AutoTrading extends Component {
 
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/allTrade`
+        `https://excelinsure-backend-229kl.ondigitalocean.app/allTrade`
       );
 
       let data = await response.json();
@@ -129,7 +129,7 @@ class AutoTrading extends Component {
 
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/allVerify`
+        `https://excelinsure-backend-229kl.ondigitalocean.app/allVerify`
       );
       let data = await response.json();
       console.log(data);
@@ -140,7 +140,7 @@ class AutoTrading extends Component {
     })();
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/trade/${
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/trade/${
           this.state.user.user ? this.state.user.user.user._id : ""
         }`
       );
@@ -152,7 +152,7 @@ class AutoTrading extends Component {
 
     (async () => {
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/trade/user/${
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/trade/user/${
           this.state.user.user ? this.state.user.user.user._id : ""
         }`
       );
@@ -173,12 +173,12 @@ class AutoTrading extends Component {
   }
   delete = (id) => {
     axios
-      .delete(`https://backend360-45ylc.ondigitalocean.app/api/copytrade/${id}`)
+      .delete(`https://excelinsure-backend-229kl.ondigitalocean.app/api/copytrade/${id}`)
       .then(
         (response) => {
           (async () => {
             let res = await fetch(
-              `https://backend360-45ylc.ondigitalocean.app/api/copytrade`
+              `https://excelinsure-backend-229kl.ondigitalocean.app/api/copytrade`
             );
             let data = await res.json();
             this.setState({
@@ -201,12 +201,12 @@ class AutoTrading extends Component {
     };
 
     axios
-      .post("https://backend360-45ylc.ondigitalocean.app/api/copytrade", data)
+      .post("https://excelinsure-backend-229kl.ondigitalocean.app/api/copytrade", data)
       .then(
         (response) => {
           (async () => {
             let res = await fetch(
-              `https://backend360-45ylc.ondigitalocean.app/api/copytrade`
+              `https://excelinsure-backend-229kl.ondigitalocean.app/api/copytrade`
             );
             let data = await res.json();
             this.setState({
@@ -231,7 +231,7 @@ class AutoTrading extends Component {
     (async () => {
       this.setState({ getLoading: true });
       let response = await fetch(
-        `https://backend360-45ylc.ondigitalocean.app/api/copytrade`
+        `https://excelinsure-backend-229kl.ondigitalocean.app/api/copytrade`
       );
       let data = await response.json();
       this.setState({
